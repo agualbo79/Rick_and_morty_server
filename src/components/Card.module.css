@@ -1,0 +1,38 @@
+/* Card.module.css */
+button {
+    background-color: rgb(255, 162, 0);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+   }
+   h2 {
+    color: rgb(240, 154, 43);
+    
+   }
+   h3 {
+    color: rgb(145, 145, 145);
+    line-height: 1;
+   }
+   .cardImg {
+    width: 200px;
+ border-radius: 50%;
+ object-fit: cover;
+ box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.555);
+ position: relative;
+ top: 48px;
+   }
+   .card {
+    border: 0px solid rgb(255, 255, 255);
+    padding: 11px;
+    text-align: center;
+    border-radius: 5%;
+   /*  background-color: rgba(255, 255, 255, 0.247);  */
+   }
+   .details {
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+   }
+
+ 

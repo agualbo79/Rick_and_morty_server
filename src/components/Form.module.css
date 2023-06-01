@@ -1,0 +1,90 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  position: relative;
+  top: 50px;
+  
+  z-index: 1;
+   border-radius: 10px;
+  padding: 20px;
+}
+
+.label {
+  font-weight: bold;
+  margin-top: 10px;
+  position: relative; /* Agrega posición relativa */
+}
+
+.placeholder {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  pointer-events: none; /* Evita que el texto del marcador de posición sea seleccionable */
+  color: #ccc;
+}
+
+
+.input {
+  margin-top: 5px;
+  border: none;
+  border-bottom: 3px solid #ccc;
+  
+  padding: 5px;
+  outline: none;
+  background: transparent;
+  color: white;
+  position: relative; /* Agrega posición relativa */
+  border-radius: 5px;
+}
+.input::placeholder {
+  color: #ccc; /* Cambia el color del marcador de posición a gris claro */
+ }
+
+ .button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-bottom: 3px solid #ccc;
+  padding: 10px 20px;
+  border-radius: 5px;
+ }
+ 
+ .button:hover {
+  color: orange;
+ }
+ 
+  
+  .gif {
+    width: 400px;
+    height: auto;
+    position: absolute;
+    top: 1;
+    bottom: 2;
+    left: 0;
+    right: 0;
+    margin: auto;
+  z-index: 0;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  .loginInfo {
+    text-align: center;
+    animation: float 3s ease-in-out infinite;
+    margin-top: 250px;
+  }
+  .loginText {
+    color: rgba(253, 253, 253, 0.579);
+  }    

@@ -1,0 +1,67 @@
+/* SearchBar.module.css */
+.searchInput {
+    
+    font-family: 'Helvetica', sans-serif; font-weight: bold;
+   
+    background-color: transparent;
+  color: white;
+  border: none;
+  border-bottom: 3px solid #ccc;
+  padding: 10px 20px;
+  border-radius: 5px;
+
+  }
+  .searchContent {
+    position: absolute;
+    left: calc(65% + 1px);
+    top: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+  }
+  .searchContentExpanded {
+    max-height: 500px;
+  }
+  .randomButton {
+    padding: 22px 35px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    font-family: 'Helvetica', sans-serif; font-weight: bold;
+    
+  }
+  .searchIcon {
+    display: block;
+    cursor: pointer;
+    margin-right: 540px; /* Ajusta el margen derecho para separarlo del logo */
+    font-size: 30px; /* Aumenta el tamaño del icono de búsqueda */
+    line-height: 53px; /* Ajusta la altura de línea para centrar verticalmente */
+  }
+  
+   
+  .searchButton {
+   padding: 22px 35px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    font-family: 'Helvetica', sans-serif; font-weight: bold;
+  }  
+
+  @media (max-width: 600px) {
+    .searchInput,
+    .randomButton,
+    .searchButton {
+    display: none;
+    }
+    .searchIcon {
+     
+      font-size: 24px; 
+      
+    }  
+    .searchIcon {
+      display: block !important; /* Asegura que el icono de búsqueda sea visible */
+      margin-right: 5px;
+    }
+   }

@@ -1,0 +1,55 @@
+body {
+    
+    color: #f1f1f1;
+  
+}
+
+.wrapperAbout {
+    margin-top: 50px;
+   }
+   
+
+.wrapper {
+    padding: 100px;
+    width: 500px;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .roles {
+      font-size: 30px;
+      height: 50px;
+      vertical-align: middle;
+      overflow: hidden;
+  }
+  
+  .roles div {
+      height: 50px;
+      transition: margin-top 1s ease-in-out;
+  }
+
+  @keyframes float {
+    0% {
+    transform: translateY(0px);
+    }
+    50% {
+    transform: translateY(-10px);
+    }
+    100% {
+    transform: translateY(0px);
+    }
+   }
+   
+   .avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: float 2s ease-in-out infinite;
+   }
+   
+   .avatar:hover {
+    transform: scale(1.1);
+   }
+   

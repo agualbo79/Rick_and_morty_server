@@ -1,25 +1,97 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './App.css';
+import Nav from './components/Nav';
+import Cards from './components/Cards';
+import About from './components/About';
+import Detail from './components/Detail';
+import Error from './components/Error';
+import Form from './components/Form';
+import styles from './components/Background.module.css';
+import WebFont from 'webfontloader';
+import Favorites from './components/Favorites';
+import { useDispatch } from 'react-redux';
+import { removeFav } from './redux/actions';
 
 function App() {
+  const [characters, setCharacters] = useState([]);
+  const [access, setAccess] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const EMAIL = 'hola@example.com';
+  const PASSWORD = 'tu-contraseña';
+
+  useEffect(() => {
+    if (!access) {
+      navigate('/');
+    }
+  }, [access]);
+
+  const login = (userData) => {
+    if (userData.email === EMAIL && userData.password === PASSWORD) {
+      setAccess(true);
+      navigate('/home');
+    }
+  };
+
+  const onSearch = (id) => {
+    if (characters.some((character) => character.id === parseInt(id))) {
+      window.alert('¡Este personaje ya está en pantalla!');
+      return;
+    }
+
+    axios(`https://rickandmortyapi.com/api/character/${id}`)
+      .then(({ data }) => {
+        if (data.name) {
+          setCharacters((oldChars) => [...oldChars, data]);
+        } else {
+          window.alert('¡No hay personajes con este ID!');
+        }
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 404) {
+          window.alert('¡No hay personajes con este ID!');
+        } else {
+          window.alert('Ocurrió un error al buscar el personaje.');
+        }
+      });
+  };
+
+  const dispatch = useDispatch();
+
+const onClose = (id) => {
+  setCharacters((prevCharacters) =>
+    prevCharacters.filter((character) => character.id !== parseInt(id))
+  );
+  dispatch(removeFav(id));
+};
+  
+
+  WebFont.load({
+    google: {
+      families: ['Helvetica']
+    }
+  });
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className={styles.space} />
+      {access && <Nav onSearch={onSearch} />}
+      <Routes>
+        <Route path="/" element={<Form login={login} />} />
+        <Route
+          path="/home"
+          element={<Cards characters={characters} onClose={onClose} />}
+        />
+        <Route path="/about" element={<About />} />
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="*" element={<Error />} />
+        <Route path="/favorites" element={<Favorites onClose={onClose} />} />
+      </Routes>
     </div>
   );
+  
 }
 
 export default App;
