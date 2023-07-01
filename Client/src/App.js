@@ -28,20 +28,23 @@ function App() {
     }
   }, [access]);
 
-  const login = (userData) => {
-    if (userData.email === EMAIL && userData.password === PASSWORD) {
-      setAccess(true);
-      navigate('/home');
-    }
-  };
+  function login(userData) {
+    const { email, password } = userData;
+    const URL = 'http://localhost:3001/rickandmorty/login/';
+    axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+       const { access } = data;
+       setAccess(data);
+       access && navigate('/home');
+    });
+ }
 
   const onSearch = (id) => {
     if (characters.some((character) => character.id === parseInt(id))) {
       window.alert('¡Este personaje ya está en pantalla!');
       return;
     }
-
-    axios(`https://rickandmortyapi.com/api/character/${id}`)
+    
+    axios(`http://localhost:3001/rickandmorty/character/${id}`)
       .then(({ data }) => {
         if (data.name) {
           setCharacters((oldChars) => [...oldChars, data]);
